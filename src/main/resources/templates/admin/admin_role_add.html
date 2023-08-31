@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Hotux后台</title>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/style.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/loader.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/jquery/jquery.min.js"></script>
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrapStyle/bootstrapStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_style.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<header class="main-header">
+    <a href="/admin" class="logo">
+        <span class="logo-mini"><b>R</b>A</span>
+        <span class="logo-lg">Hotux</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/" title="前往前台"
+                       target="_blank"><i class="fa fa-location-arrow"></i></a></li>
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="user-image loginUserAvatar" alt="User
+                                Image">
+                        <span class="hidden-xs loginUserDisplayName"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar" alt="User
+                                    Image">
+                            <p class="loginUserDisplayName"></p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left"><a data-pjax="true" href="/admin/user/profile"
+                                                      class="btn btn-default "><i
+                                    class="fa fa-user"></i>个人资料</a></div>
+                            <div class="pull-right"><a href="/logout" class="btn btn-default "><i
+                                    class="fa fa-sign-out"></i>登出</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<div class="wrapper">
+    <!-- 菜单栏模块 -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar"
+                         style="width: 45px;height: 45px;" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p class="loginUserDisplayName"></p>
+                    <a href="/admin/user/profile"><i
+                            class="fa fa-circle text-success"></i>个人资料</a>
+                </div>
+            </div>
+            <form action="/search" method="get" target="_blank" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                  <button type="submit" name="keyword" id="search-btn" target="_blank"  class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                </div>
+            </form>
+
+            <ul class="sidebar-menu" data-widget="tree"></ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                添加角色
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a data-pjax="true" href="/admin">
+                        <i class="fa fa-dashboard"></i> 首页</a>
+                </li>
+                <li><a data-pjax="true" href="#">角色管理</a></li>
+                <li class="active">添加角色</li>
+            </ol>
+        </section>
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加角色</h3>
+                        </div>
+                        <form action="/admin/role/save" method="post" role="form" id="roleAddForm">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="role">角色编码</label>
+                                    <input type="text" class="form-control" id="role" name="role">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">角色名称</label>
+                                    <input type="text" class="form-control" id="description" name="description">
+                                </div>
+                                <div class="form-group">
+                                    <label for="level">角色等级
+                                        <span data-toggle="tooltip" data-placement="top"
+                                              title="数字越大等级越大"
+                                              style="cursor: pointer">
+                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                </span>
+                                    </label>
+                                    <input type="number" class="form-control" id="level" name="level">
+                                </div>
+                                <div class="form-group">
+                                    <label for="permission">权限</label>
+                                    <ul id="permission" class="ztree"></ul>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" onclick="saveRole()"
+                                        class="btn btn-primary btn-sm ">保存
+                                </button>
+                                <a href="/admin/role"
+                                   class="btn btn-info btn-sm">返回</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+
+            // ztree文档地址：http://www.treejs.cn/v3/api.php
+            var setting = {
+                view: {
+                    addHoverDom: false,
+                    removeHoverDom: false,
+                    selectedMulti: false,
+                    showIcon: false,
+                    showLine: false
+                },
+                check: {
+                    enable: true
+                    // chkboxType: {"Y": "p", "N": ""}
+                },
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pid",
+                        rootPId: 0
+                    }
+                },
+                edit: {
+                    enable: false
+                }
+            };
+
+            var permissions = [{"id":127,"delFlag":0,"createBy":"admin","createTime":"2020-02-08T19:20:54.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:54:47.000+08:00","name":"\u89D2\u8272\u5217\u8868[\u83DC\u5355]","pid":91,"resourceType":"menu","url":"\/admin\/permission\/edit?id=127","icon":"fa fa-circle-o","sort":0.0,"level":null,"childPermissions":null},{"id":128,"delFlag":0,"createBy":"admin","createTime":"2020-02-08T19:21:16.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:54:57.000+08:00","name":"\u6743\u9650\u5217\u8868[\u83DC\u5355]","pid":95,"resourceType":"menu","url":"\/admin\/permission\/edit?id=128","icon":"fa fa-circle-o","sort":0.0,"level":null,"childPermissions":null},{"id":1,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:42:25.000+08:00","name":"\u9996\u9875[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=1","icon":"fa fa-dashboard","sort":1.0,"level":null,"childPermissions":null},{"id":106,"delFlag":0,"createBy":"admin","createTime":"2020-02-04T10:26:13.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:37:08.000+08:00","name":"\u83B7\u5F97\u5F53\u524D\u767B\u5F55\u7528\u6237\u4FE1\u606F\u63A5\u53E3[\u63A5\u53E3]","pid":1,"resourceType":"button","url":"\/admin\/permission\/edit?id=106","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":110,"delFlag":0,"createBy":"admin","createTime":"2020-02-07T23:14:11.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:55:01.000+08:00","name":"\u6DFB\u52A0\u6743\u9650[\u83DC\u5355]","pid":95,"resourceType":"menu","url":"\/admin\/permission\/edit?id=110","icon":"fa fa-circle-o","sort":1.0,"level":null,"childPermissions":null},{"id":111,"delFlag":0,"createBy":"admin","createTime":"2020-02-07T23:19:05.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:54:51.000+08:00","name":"\u6DFB\u52A0\u89D2\u8272[\u83DC\u5355]","pid":91,"resourceType":"menu","url":"\/admin\/permission\/edit?id=111","icon":"fa fa-circle-o","sort":1.0,"level":null,"childPermissions":null},{"id":138,"delFlag":0,"createBy":"admin","createTime":"2020-03-07T20:01:36.000+08:00","updateBy":"admin","updateTime":"2020-04-06T22:23:23.000+08:00","name":"\u7C7B\u578B\u5217\u8868[\u83DC\u5355]","pid":137,"resourceType":"menu","url":"\/admin\/permission\/edit?id=138","icon":"fa fa-circle-o","sort":1.0,"level":null,"childPermissions":null},{"id":140,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:02:20.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:32:49.000+08:00","name":"\u5220\u9664\u5BA2\u623F[\u63A5\u53E3]","pid":133,"resourceType":"button","url":"\/admin\/permission\/edit?id=140","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":141,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:03:02.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:32:58.000+08:00","name":"\u6279\u91CF\u5220\u9664\u5BA2\u623F[\u63A5\u53E3]","pid":133,"resourceType":"button","url":"\/admin\/permission\/edit?id=141","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":142,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:03:49.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:33:09.000+08:00","name":"\u7F16\u8F91\u5BA2\u623F\u4FE1\u606F[\u9875\u9762]","pid":133,"resourceType":"page","url":"\/admin\/permission\/edit?id=142","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":143,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:04:42.000+08:00","updateBy":"admin","updateTime":"2020-04-07T00:21:39.000+08:00","name":"\u4FDD\u5B58\u5BA2\u623F[\u63A5\u53E3]","pid":132,"resourceType":"button","url":"\/admin\/permission\/edit?id=143","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":144,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:05:23.000+08:00","updateBy":"admin","updateTime":"2020-04-07T00:21:25.000+08:00","name":"\u8FD8\u539F\u5BA2\u623F[\u63A5\u53E3]","pid":133,"resourceType":"button","url":"\/admin\/permission\/edit?id=144","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":145,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T15:07:01.000+08:00","updateBy":"admin","updateTime":"2020-03-08T15:07:01.000+08:00","name":"\u79FB\u5230\u56DE\u6536\u7AD9[\u63A5\u53E3]","pid":133,"resourceType":"button","url":"\/admin\/permission\/edit?id=145","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":146,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T17:53:01.000+08:00","updateBy":"admin","updateTime":"2020-03-08T17:53:01.000+08:00","name":"\u6587\u4EF6\u4E0A\u4F20[\u63A5\u53E3]","pid":132,"resourceType":"button","url":"\/admin\/permission\/edit?id=146","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":147,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T18:51:48.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:10:35.000+08:00","name":"\u4FDD\u5B58\u7C7B\u578B[\u63A5\u53E3]","pid":138,"resourceType":"button","url":"\/admin\/permission\/edit?id=147","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":148,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T18:52:27.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:11:21.000+08:00","name":"\u7F16\u8F91\u7C7B\u578B[\u63A5\u53E3]","pid":138,"resourceType":"button","url":"\/admin\/permission\/edit?id=148","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":149,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T18:54:13.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:11:14.000+08:00","name":"\u5220\u9664\u7C7B\u578B[\u63A5\u53E3]","pid":138,"resourceType":"button","url":"\/admin\/permission\/edit?id=149","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":152,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T19:32:56.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:21:33.000+08:00","name":"\u5220\u9664\u8BA2\u5355[\u63A5\u53E3]","pid":150,"resourceType":"button","url":"\/admin\/permission\/edit?id=152","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":155,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T19:43:06.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:21:42.000+08:00","name":"\u5B8C\u7ED3\u8BA2\u5355[\u63A5\u53E3]","pid":150,"resourceType":"button","url":"\/admin\/permission\/edit?id=155","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":168,"delFlag":0,"createBy":"admin","createTime":"2020-04-07T23:01:44.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:21:27.000+08:00","name":"\u5173\u95ED\u8BA2\u5355[\u63A5\u53E3]","pid":150,"resourceType":"button","url":"\/admin\/permission\/edit?id=168","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":169,"delFlag":0,"createBy":"admin","createTime":"2020-04-07T23:02:23.000+08:00","updateBy":"admin","updateTime":"2020-04-07T23:02:23.000+08:00","name":"\u83B7\u5F97\u5F53\u524D\u767B\u5F55\u7528\u6237\u89D2\u8272\u63A5\u53E3[\u63A5\u53E3]","pid":1,"resourceType":"button","url":"\/admin\/permission\/edit?id=169","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":170,"delFlag":0,"createBy":"admin","createTime":"2020-05-10T13:21:23.000+08:00","updateBy":"admin","updateTime":"2020-05-10T13:21:23.000+08:00","name":"\u6DFB\u52A0\u5DE5\u4F5C\u4EBA\u5458[\u63A5\u53E3]","pid":164,"resourceType":"button","url":"\/admin\/permission\/edit?id=170","icon":"","sort":1.0,"level":null,"childPermissions":null},{"id":131,"delFlag":0,"createBy":"admin","createTime":"2020-03-07T19:37:26.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:32:16.000+08:00","name":"\u5BA2\u623F\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=131","icon":"fa fa-paint-brush","sort":5.0,"level":null,"childPermissions":null},{"id":6,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:45:28.000+08:00","name":"\u83B7\u5F97\u4FA7\u8FB9\u680F\u83DC\u5355[\u63A5\u53E3]","pid":1,"resourceType":"button","url":"\/admin\/permission\/edit?id=6","icon":"","sort":6.0,"level":null,"childPermissions":null},{"id":137,"delFlag":0,"createBy":"admin","createTime":"2020-03-07T20:00:57.000+08:00","updateBy":"admin","updateTime":"2020-04-07T00:19:44.000+08:00","name":"\u5BA2\u623F\u7C7B\u578B\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=137","icon":"fa fa-book","sort":6.0,"level":null,"childPermissions":null},{"id":133,"delFlag":0,"createBy":"admin","createTime":"2020-03-07T19:40:00.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:32:28.000+08:00","name":"\u5BA2\u623F\u5217\u8868[\u83DC\u5355]","pid":131,"resourceType":"menu","url":"\/admin\/permission\/edit?id=133","icon":"fa fa-circle-o","sort":8.0,"level":null,"childPermissions":null},{"id":150,"delFlag":0,"createBy":"admin","createTime":"2020-03-08T19:19:59.000+08:00","updateBy":"admin","updateTime":"2020-04-06T22:18:14.000+08:00","name":"\u8BA2\u5355\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=150","icon":"fa fa-tag","sort":8.0,"level":null,"childPermissions":null},{"id":132,"delFlag":0,"createBy":"admin","createTime":"2020-03-07T19:39:34.000+08:00","updateBy":"admin","updateTime":"2020-04-06T16:32:39.000+08:00","name":"\u65B0\u589E\u5BA2\u623F[\u83DC\u5355]","pid":131,"resourceType":"menu","url":"\/admin\/permission\/edit?id=132","icon":"fa fa-circle-o","sort":9.0,"level":null,"childPermissions":null},{"id":73,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2019-10-15T20:30:55.000+08:00","name":"\u7528\u6237\u4FDD\u5B58[\u63A5\u53E3]","pid":70,"resourceType":"button","url":"\/admin\/permission\/edit?id=73","icon":null,"sort":73.0,"level":null,"childPermissions":null},{"id":74,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2019-10-15T20:30:55.000+08:00","name":"\u5220\u9664\u7528\u6237[\u63A5\u53E3]","pid":70,"resourceType":"button","url":"\/admin\/permission\/edit?id=74","icon":null,"sort":74.0,"level":null,"childPermissions":null},{"id":75,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2019-10-15T20:30:55.000+08:00","name":"\u6279\u91CF\u5220\u9664\u7528\u6237[\u63A5\u53E3]","pid":70,"resourceType":"button","url":"\/admin\/permission\/edit?id=75","icon":null,"sort":75.0,"level":null,"childPermissions":null},{"id":76,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-16T13:27:24.000+08:00","name":"\u7F16\u8F91\u7528\u6237[\u63A5\u53E3]","pid":70,"resourceType":"button","url":"\/admin\/permission\/edit?id=76","icon":"","sort":76.0,"level":null,"childPermissions":null},{"id":70,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:14:49.000+08:00","name":"\u5BA2\u6237\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=70","icon":"fa fa-users","sort":80.0,"level":null,"childPermissions":null},{"id":82,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:43:51.000+08:00","name":"\u4FDD\u5B58\u4E2A\u4EBA\u4FE1\u606F[\u63A5\u53E3]","pid":120,"resourceType":"button","url":"\/admin\/permission\/edit?id=82","icon":"","sort":82.0,"level":null,"childPermissions":null},{"id":83,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:43:41.000+08:00","name":"\u4FEE\u6539\u5BC6\u7801[\u63A5\u53E3]","pid":120,"resourceType":"button","url":"\/admin\/permission\/edit?id=83","icon":"","sort":83.0,"level":null,"childPermissions":null},{"id":164,"delFlag":0,"createBy":"admin","createTime":"2020-04-07T00:01:50.000+08:00","updateBy":"admin","updateTime":"2020-04-08T01:14:21.000+08:00","name":"\u5DE5\u4F5C\u4EBA\u5458\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=164","icon":"fa fa-user","sort":85.0,"level":null,"childPermissions":null},{"id":167,"delFlag":0,"createBy":"admin","createTime":"2020-04-07T00:12:17.000+08:00","updateBy":"admin","updateTime":"2020-04-08T00:26:36.000+08:00","name":"\u8D22\u52A1\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=167","icon":"fa fa-money","sort":88.0,"level":null,"childPermissions":null},{"id":91,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-16T12:52:05.000+08:00","name":"\u89D2\u8272\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=91","icon":"fa fa-snowflake-o","sort":91.0,"level":null,"childPermissions":null},{"id":92,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:55:53.000+08:00","name":"\u4FDD\u5B58\u89D2\u8272[\u63A5\u53E3]","pid":91,"resourceType":"button","url":"\/admin\/permission\/edit?id=92","icon":"","sort":92.0,"level":null,"childPermissions":null},{"id":93,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:58:40.000+08:00","name":"\u7F16\u8F91\u89D2\u8272[\u9875\u9762]","pid":91,"resourceType":"page","url":"\/admin\/permission\/edit?id=93","icon":"","sort":93.0,"level":null,"childPermissions":null},{"id":94,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:55:47.000+08:00","name":"\u5220\u9664\u89D2\u8272[\u63A5\u53E3]","pid":91,"resourceType":"button","url":"\/admin\/permission\/edit?id=94","icon":"","sort":94.0,"level":null,"childPermissions":null},{"id":95,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-03-12T15:08:17.000+08:00","name":"\u6743\u9650\u7BA1\u7406[\u83DC\u5355]","pid":0,"resourceType":"menu","url":"\/admin\/permission\/edit?id=95","icon":"fa fa-podcast","sort":95.0,"level":null,"childPermissions":null},{"id":96,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:55:45.000+08:00","name":"\u4FDD\u5B58\u6743\u9650[\u63A5\u53E3]","pid":95,"resourceType":"button","url":"\/admin\/permission\/edit?id=96","icon":"","sort":96.0,"level":null,"childPermissions":null},{"id":97,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:57:13.000+08:00","name":"\u7F16\u8F91\u6743\u9650[\u9875\u9762]","pid":95,"resourceType":"page","url":"\/admin\/permission\/edit?id=97","icon":"","sort":97.0,"level":null,"childPermissions":null},{"id":98,"delFlag":0,"createBy":"admin","createTime":"2019-10-15T20:22:36.000+08:00","updateBy":"admin","updateTime":"2020-02-07T23:55:43.000+08:00","name":"\u5220\u9664\u6743\u9650[\u63A5\u53E3]","pid":95,"resourceType":"button","url":"\/admin\/permission\/edit?id=98","icon":"","sort":98.0,"level":null,"childPermissions":null},{"id":120,"delFlag":0,"createBy":"admin","createTime":"2020-02-07T23:38:51.000+08:00","updateBy":"admin","updateTime":"2020-02-08T00:02:34.000+08:00","name":"\u4E2A\u4EBA\u4FE1\u606F[\u9875\u9762]","pid":0,"resourceType":"page","url":"\/admin\/permission\/edit?id=120","icon":"","sort":99.0,"level":null,"childPermissions":null}]
+            $.fn.zTree.init($("#permission"), setting, permissions);
+
+
+            function saveRole() {
+                var treeObj = $.fn.zTree.getZTreeObj("permission"),
+                    nodes = treeObj.getCheckedNodes(true);
+                var permissionIds = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    permissionIds += nodes[i].id + ',';
+                }
+                console.log(permissionIds);
+                var role = $('#role').val();
+                var description = $('#description').val();
+                if (role == "" || description == "" || permissionIds.length == 0) {
+                    showMsg('请输入完整信息', "error", 2000);
+                    return;
+                }
+                var param = $.param({'permissionIds': permissionIds}) + '&' + $('#roleAddForm').serialize();
+                $.ajax({
+                    type: 'post',
+                    url: '/admin/role/save',
+                    data: param,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.code == 1) {
+                            $.toast({
+                                text: data.msg,
+                                heading: '提示',
+                                icon: 'success',
+                                showHideTransition: 'fade',
+                                allowToastClose: true,
+                                hideAfter: 1000,
+                                stack: 1,
+                                position: 'top-center',
+                                textAlign: 'left',
+                                loader: true,
+                                loaderBg: '#ffffff',
+                                afterHidden: function () {
+                                    window.location.href = "/admin/role";
+                                }
+                            });
+                        } else {
+                            showMsg(data.msg, "error", 1000);
+                        }
+                    }
+                });
+            }
+        </script>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"><a href="#">2020</a></div>
+    Thanks for using <strong><a data-pjax="true" href="#">Hotux</a>.</strong>
+</footer>
+
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pjax/jquery.pjax.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/adminlte.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/layer/layer.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/languages/zh_cn.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/plugins/image_manager.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/app.js"></script>
+<script>
+    Pace.options = {
+        restartOnRequestAfter: false
+    };
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).pjax('a[data-pjax=true]', '.content-wrapper', {
+        fragment: '.content-wrapper',
+        timeout: 8000
+    });
+    var heading = "提示";
+</script>
+</body>
+</html>
+
+

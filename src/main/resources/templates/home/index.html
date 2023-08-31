@@ -1,0 +1,396 @@
+
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"xmlns:th="http://www.w3.org/1999/xhtml">
+
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Hotux</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://oss.liuyanzhao.com/static/hotel/static/front/images/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--Default CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/default.css" rel="stylesheet" type="text/css">
+    <!--Custom CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/style.css" rel="stylesheet" type="text/css">
+    <!--Plugin CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/plugin.css" rel="stylesheet" type="text/css">
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">-->
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+<!-- Preloader -->
+<!--        <div id="preloader">-->
+<!--            <div id="status"></div>-->
+<!--        </div>-->
+<!-- Preloader Ends -->
+
+<!-- header start -->
+<header class="main_header_area">
+    <div class="header-content">
+        <div class="container">
+            <div class="links links-left">
+                <ul>
+                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> info@abcd.com</a></li>
+                    <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> 977-222-333-444</a></li>
+                </ul>
+            </div>
+            <div class="links links-right pull-right">
+                <ul style="display: none;" id="notLoginUl">
+                    <li>
+                        <a href="#" data-toggle="modal" id="btn-login-model" data-target="#login">
+                            <i class="fa fa-user"></i>
+                            登录
+                        </a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#register">
+                        <i class="fa fa-pencil"></i>
+                        注册</a>
+                    </li>
+                </ul>
+                <ul style="display: none;" id="loginUl">
+                    <li>
+                        <a href="/admin">
+                            <i class="fa fa-dashboard"></i> 后台
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="btn-logout">
+                            <i class="fa fa-user"></i>
+                            退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Bar -->
+    <div class="header_menu affix-top">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo.png" class="logo-white">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" class="logo-black">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="responsive-menu">
+                        <li class="dropdown submenu">
+                            <a href="/" class="dropdown-toggle">首页</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=1">单间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=2">大床房</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=3">双人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=4">三人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=5">套房</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            <div id="slicknav-mobile"></div>
+        </nav>
+    </div>
+    <!-- Navigation Bar Ends -->
+</header>
+<!-- header Ends -->
+
+
+
+
+<!-- breadcrumb starts -->
+<section class="breadcrumb-outer">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2>希望您有一段美好的旅途</h2>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">首页</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">客房列表</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb Ends -->
+
+
+<!-- room list starts -->
+<section class="room-list">
+    <div class="container">
+        <div class="list-filter">
+            <form action="/"  id="searchForm">
+                <div class="form-content text-center">
+                    <div class="table-item">
+                        <div class="form-group">
+                            <div class="date-range-inner-wrapper">
+                                <input id="startDate" class="form-control" name="startDate" th:value="${startDate}" placeholder="入住日期" title="入住日期">
+                                <span class="input-group-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-item">
+                        <div class="form-group form-icon">
+                            <select name="quantity">
+                                <option value="1">入住天数</option>
+                                <option value="1" selected="selected">1天</option>
+                                <option value="2">2天</option>
+                                <option value="3">3天</option>
+                                <option value="4">4天</option>
+                                <option value="5">5天</option>
+                                <option value="6">6天</option>
+                                <option value="7">7天</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-item">
+                        <div class="form-group form-icon">
+                            <select name="cateId" onchange="getContent(this.value)">
+                                <option value="0">不限</option>
+                                <option value="1">单间</option>
+                                <option value="2">大床房</option>
+                                <option value="3">双人间</option>
+                                <option value="4">三人间</option>
+                                <option value="5">套房</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-item">
+                        <div class="form-btn">
+                            <a class="btn btn-orange" id="btn-search">快速查找</a>
+                            <input type="submit" id="submit-search" style="display: none">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="list-content" >
+            <div class="row"   >
+                <div class="col-md-4 col-sm-6 col-xs-6" th:each="post:${posts.getRecords()}" >
+                    <div class="room-item"  >
+
+                        <div class="room-image">
+                            <img th:src="${post.getPostThumbnail()}" alt="image">
+                        </div>
+                        <div class="room-content">
+                            <div class="room-title">
+                                <h4 th:text="${post.getPostTitle()}"></h4>
+                                <p><i class="fa fa-tag" th:text="'¥'+${post.getPrice()+'/天'}"></i> </p>
+                                <!--                                <div class="deal-rating">-->
+                                <!--                                    <span class="fa fa-star checked"></span>-->
+                                <!--                                    <span class="fa fa-star checked"></span>-->
+                                <!--                                    <span class="fa fa-star checked"></span>-->
+                                <!--                                    <span class="fa fa-star checked"></span>-->
+                                <!--                                    <span class="fa fa-star checked"></span>-->
+                                <!--                                </div>-->
+                            </div>
+                            <div class="room-services mar-bottom-15">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <i class="fa fa-bed" aria-hidden="true" th:text="${post.getCategory().getCateName()}"></i>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <i class="fa fa-building" aria-hidden="true" th:text="${post.getNumber()}"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="height: 72px;overflow: hidden;" th:text="${post.getPostSummary()}"></p>
+
+                            <div class="room-btns">
+                                <a th:href="'/post/'+${post.getId()}+'?startDate='+${startDate}+'&amp;quantity=1'" class="btn btn-orange mar-right-10">查看&预定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pagination-content text-center">
+            <ul class="pagination">
+
+                <li class="active">
+                    <a href="?page=1&amp;startDate=2020-12-20&amp;quantity=1&amp;cateId=0">1</a>
+                </li>
+                <li>
+                    <a href="?page=2&amp;startDate=2020-12-20&amp;quantity=1&amp;cateId=0">2</a>
+                </li>
+                <li>
+                    <a href="?page=3&amp;startDate=2020-12-20&amp;quantity=1&amp;cateId=0">3</a>
+                </li>
+                <li><a href="?page=2&amp;startDate=2020-12-20&amp;quantity=1&amp;cateId=0"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- room list Ends -->
+
+<!-- Footer Starts -->
+<footer>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-content">
+                        <p>Copyright 2020. Made with <span>♥</span>. All Rights Reserved. <a
+                                href="#">Hotux</a></p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="tripadvisor-logo text-center">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/tripadvisor.png" alt="image">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-links mar-bottom-20">
+                        <ul>
+                            <li><a href="#">Accomodations</a></li>
+                            <li><a href="#">Book Now</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="playstore-links">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/appstore.png" alt="image" class="mar-right-10">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/googleplay.png" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Ends -->
+
+<!-- Back to top start -->
+<div id="back-to-top">
+    <a href="#"></a>
+</div>
+<!-- Back to top ends -->
+
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>快速登录</h3>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="手机号码或身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="userPass" placeholder="密码">
+                </div>
+                <div class="form-group form-checkbox">
+                    <input type="checkbox" id="rememberMe" checked> 记住我
+                    <!--                    <a href="#">Forgot password?</a>-->
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-login" class="btn btn-orange">登录</a>
+                <p>还没有账号?<a href="#" data-toggle="modal" data-target="#register">创建账号</a></p>
+                <p>忘记了密码?<a href="#" data-toggle="modal" data-target="#forget">重置密码</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>创建账号</h3>
+            <form>
+                <div class="form-group">
+                    <input type="number" id="regUserName" placeholder="手机号码">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="userDisplayName" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="idCard" placeholder="身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regUserPass" placeholder="密码">
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-register" class="btn btn-orange">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="forget" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>重置密码</h3>
+            <form>
+                <div class="form-group">
+                    <input type="number" id="forgetUserName" placeholder="手机号码">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="forgetIdCard" placeholder="身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="forgetUserPass" placeholder="新密码">
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-forget" class="btn btn-orange">重置密码</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- *Scripts* -->
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/jquery-3.3.1.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/bootstrap.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/plugin.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/main.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/login.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-nav.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-swiper1.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-singledate.js"></script>
+</body>
+</html>
+
+
+

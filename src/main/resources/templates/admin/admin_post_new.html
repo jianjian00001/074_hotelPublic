@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Hotux后台</title>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/style.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/loader.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/jquery/jquery.min.js"></script>
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrapStyle/bootstrapStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_style.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<header class="main-header">
+    <a href="/admin" class="logo">
+        <span class="logo-mini"><b>R</b>A</span>
+        <span class="logo-lg">Hotux</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/" title="前往前台"
+                       target="_blank"><i class="fa fa-location-arrow"></i></a></li>
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="user-image loginUserAvatar" alt="User
+                                Image">
+                        <span class="hidden-xs loginUserDisplayName"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar" alt="User
+                                    Image">
+                            <p class="loginUserDisplayName"></p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left"><a data-pjax="true" href="/admin/user/profile"
+                                                      class="btn btn-default "><i
+                                    class="fa fa-user"></i>个人资料</a></div>
+                            <div class="pull-right"><a href="/logout" class="btn btn-default "><i
+                                    class="fa fa-sign-out"></i>登出</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="wrapper">
+    <!-- 菜单栏模块 -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar"
+                         style="width: 45px;height: 45px;" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p class="loginUserDisplayName"></p>
+                    <a href="/admin/user/profile"><i
+                            class="fa fa-circle text-success"></i>个人资料</a>
+                </div>
+            </div>
+          <!--  <form action="/search" method="get" target="_blank" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                  <button type="submit" name="keyword" id="search-btn" target="_blank"  class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                </div>
+            </form>-->
+
+            <ul class="sidebar-menu" data-widget="tree"></ul>
+        </section>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <style type="text/css">
+            #cateId option {
+                border-radius: 0;
+            }
+
+            .form-horizontal .control-label {
+                text-align: left;
+            }
+
+            .editor-preview-active img, .editor-preview-active-side img {
+                width: 100%;
+            }
+
+            .fr-toolbar {
+                border-top: 1px solid #ccc !important;
+            }
+
+            .fr-wrapper > div[style*='z-index: 9999'] {
+                position: absolute;
+                top: -10000px;
+                opacity: 0;
+                height: 0;
+            }
+
+            .fr-view img.fr-dib {
+                margin: 5px!important;
+                width: 400px!important;
+                height: 200px!important;
+            }
+        </style>
+        <section class="content-header">
+            <h1 style="display: inline-block;">客房发布</h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a data-pjax="true" href="#"><i
+                            class="fa fa-dashboard"></i> 首页</a>
+                </li>
+                <li>
+                    <a data-pjax="true" href="/admin/post">客房管理</a>
+                </li>
+                <li class="active">客房发布</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-lg" id="postTitle" placeholder="请输入标题">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control input-lg" rows="8" id="postContent" placeholder="客房描述信息"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control  input-lg" id="cateId">
+                                        <option value="1" disabled>客房类型</option>
+                                        <option value="1">单间</option>
+                                        <option value="2">大床房</option>
+                                        <option value="3">双人间</option>
+                                        <option value="4">三人间</option>
+                                        <option value="5">套房</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-lg" id="number"   placeholder="房间号" >
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-lg" id="price"   placeholder="客房价格" >
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input id='postThumbnail' name="postThumbnail" placeholder="缩略图" class="form-control input-lg" onclick="$('#postThumbnailFile').click();">
+                                        <label class="input-group-btn">
+                                            <input type="button" id="i-check" value="上传缩略图"
+                                                   style="border-radius: 0; border-left: 0;" class="btn btn-info btn-lg"
+                                                   onclick="$('#postThumbnailFile').click();">
+                                        </label>
+                                        <input type="file" id="postThumbnailFile" accept=".png, .jpg, .jpeg" style="display: none">
+                                    </div>
+                                </div>
+                                <div class="form-group" id='edit'>客房图片</div>
+
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary" onclick="push(0)">发布</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <script>
+
+
+            //页面加载完成后再执行
+            $(function () {
+                $('#edit').froalaEditor({
+                    heightMin: 300,
+                    heightMax: 1000,
+                    placeholderText: '',
+                    pastePlain: true,
+                    theme: 'gray',
+                    fontFamilySelection: true,
+                    fontSizeSelection: true,
+                    paragraphFormatSelection: true,
+                    toolbarButtons: ['insertImage'],
+                    imageAllowedTypes: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'psd'],
+                    imageDefaultWidth: 100,
+                    imageInsertButtons: ['imageBack', '|', 'imageUpload', 'imageByURL'],
+                    imageUploadURL: '/admin/file/upload',
+                    imageManagerLoadURL: '/admin/file/upload',
+                    imageManagerLoadMethod: "GET",
+                    imageManagerPageSize: 4,
+                    imageManagerScrollOffset: 20,
+                    fileUploadURL: '/admin/file/upload',
+                    videoUploadURL: '/admin/file/upload',
+                    imagePaste: true,
+                    imageMove: true,
+                    pastePlain: true,
+                    fileMaxSize: 1024 * 1024 * 2000,
+                    toolbarStickyOffset: 50,
+                    tableResizer: true,
+                    language:'zh_cn'
+                });
+
+            });
+
+            /**
+             * 上传缩略图
+             */
+            $('body').on('change', '#postThumbnailFile', function () {
+                var formData = new FormData();
+                var files = $($(this))[0].files[0];
+                formData.append("file", files);
+                $.ajax({
+                    url: '/admin/file/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $('#postThumbnail').val(data.link);
+                        // alert('上传成功');
+                    }
+                    , error: function (res) {
+                        // alert('错误');
+                    }
+                });
+            })
+
+
+        </script>
+    </div>
+
+</div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"><a href="#">2020</a></div>
+    Thanks for using <strong><a data-pjax="true" href="#">Hotux</a>.</strong>
+</footer>
+
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pjax/jquery.pjax.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/adminlte.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/layer/layer.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/languages/zh_cn.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/plugins/image_manager.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/app.js"></script>
+<script>
+    Pace.options = {
+        restartOnRequestAfter: false
+    };
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).pjax('a[data-pjax=true]', '.content-wrapper', {
+        fragment: '.content-wrapper',
+        timeout: 8000
+    });
+    var heading = "提示";
+</script>
+</body>
+</html>

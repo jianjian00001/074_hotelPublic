@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Hotux后台</title>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/style.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/loader.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/jquery/jquery.min.js"></script>
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrapStyle/bootstrapStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_style.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<header class="main-header">
+    <a href="/admin" class="logo">
+        <span class="logo-mini"><b>R</b>A</span>
+        <span class="logo-lg">Hotux</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/" title="前往前台"
+                       target="_blank"><i class="fa fa-location-arrow"></i></a></li>
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="user-image loginUserAvatar" alt="User
+                                Image">
+                        <span class="hidden-xs loginUserDisplayName"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar" alt="User
+                                    Image">
+                            <p class="loginUserDisplayName"></p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left"><a data-pjax="true" href="/admin/user/profile"
+                                                      class="btn btn-default "><i
+                                    class="fa fa-user"></i>个人资料</a></div>
+                            <div class="pull-right"><a href="/logout" class="btn btn-default "><i
+                                    class="fa fa-sign-out"></i>登出</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="wrapper">
+    <!-- 菜单栏模块 -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar"
+                         style="width: 45px;height: 45px;" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p class="loginUserDisplayName"></p>
+                    <a href="/admin/user/profile"><i
+                            class="fa fa-circle text-success"></i>个人资料</a>
+                </div>
+            </div>
+
+
+            <ul class="sidebar-menu" data-widget="tree"></ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                角色列表
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a data-pjax="true" href="/admin">
+                        <i class="fa fa-dashboard"></i> 首页</a>
+                </li>
+                <li><a data-pjax="true" href="#">角色管理</a></li>
+                <li class="active">角色列表</li>
+            </ol>
+        </section>
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12" style="margin-bottom: 10px;">
+                    <a class="btn btn-primary" href="/admin/role/new">
+                        <i class="fa fa-plus"></i> 新增
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">角色列表</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>角色编码</th>
+                                    <th>角色名称</th>
+                                    <th>角色等级</th>
+                                    <th class="col-md-3">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="role:${roles}">
+                                <tr>
+                                    <td th:text="${role.getRole()}">admin</td>
+                                    <td th:text="${role.getDescription()}">管理员</td>
+                                    <td th:text="${role.getLevel()}">10</td>
+                                    <td>
+                                        <a th:href="'/admin/role/edit?id='+${role.getId()}"
+                                           class="btn btn-primary btn-xs ">修改</a>
+                                        <button class="btn btn-danger btn-xs delete-role"
+                                                th:onclick="'removeIt('+${role.getId()}+')'">删除
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box-footer clearfix">
+                            <div class="no-margin pull-left">
+                                第 1 / 1 页
+                            </div>
+                            <ul class="pagination no-margin pull-right">
+                                <li><a data-pjax="true"  class="btn btn-sm "
+                                       href="/admin/role?sort=null&amp;order=null">
+                                    首页
+                                </a>
+                                </li>
+                                <li><a data-pjax="true" th:class="${pageInfo.getCurrent() gt 1?'btn btn-sm':'btn btn-sm disabled'}"
+                                       th:href="'/admin/role?page='+${pageInfo.getCurrent()-1}+'&amp;sort=null&amp;order=null'">
+                                    上一页
+                                </a>
+                                </li>
+                                <li><a data-pjax="true" th:class="${pageInfo.getCurrent() lt pageInfo.getPages()?'btn btn-sm':'btn btn-sm disabled'}"
+                                       href="'/admin/role?page='+${pageInfo.getCurrent()-1}+'&amp;sort=null&amp;order=null'">
+                                    下一页
+                                </a>
+                                </li>
+                                <li><a data-pjax="true" class="btn btn-sm "
+                                       th:href="'/admin/role?page='+${pageInfo.getPages()}+'&amp;sort=null&amp;order=null'">
+                                    尾页
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <script>
+
+            function removeIt(id) {
+                layer.confirm('你确定是否删除', function (index) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/role/delete?id=' + id,
+                        async: false,
+                        success: function (data) {
+                            if (data.code == 0) {
+                                showMsg(data.msg, "error", 1000);
+                            } else {
+                                window.location.reload();
+                            }
+
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+
+        </script>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"><a href="#">2020</a></div>
+    Thanks for using <strong><a data-pjax="true" href="#">Hotux</a>.</strong>
+</footer>
+
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pjax/jquery.pjax.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/adminlte.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/layer/layer.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/languages/zh_cn.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/plugins/image_manager.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/app.js"></script>
+<script>
+    Pace.options = {
+        restartOnRequestAfter: false
+    };
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).pjax('a[data-pjax=true]', '.content-wrapper', {
+        fragment: '.content-wrapper',
+        timeout: 8000
+    });
+    var heading = "提示";
+</script>
+</body>
+</html>
+
+

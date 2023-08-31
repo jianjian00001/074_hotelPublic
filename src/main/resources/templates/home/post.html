@@ -1,0 +1,650 @@
+
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Hotux</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <!-- 引入jquery.js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://oss.liuyanzhao.com/static/hotel/static/front/images/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--Default CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/default.css" rel="stylesheet" type="text/css">
+    <!--Custom CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/style.css" rel="stylesheet" type="text/css">
+    <!--Plugin CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/plugin.css" rel="stylesheet" type="text/css">
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">-->
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+<!-- Preloader -->
+<!--        <div id="preloader">-->
+<!--            <div id="status"></div>-->
+<!--        </div>-->
+<!-- Preloader Ends -->
+
+<!-- header start -->
+<header class="main_header_area">
+    <div class="header-content">
+        <div class="container">
+            <div class="links links-left">
+                <ul>
+                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> info@abcd.com</a></li>
+                    <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> 977-222-333-444</a></li>
+                </ul>
+            </div>
+            <div class="links links-right pull-right">
+                <ul style="display: none;" id="notLoginUl">
+                    <li>
+                        <a href="#" data-toggle="modal" id="btn-login-model" data-target="#login">
+                            <i class="fa fa-user"></i>
+                            登录
+                        </a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#register">
+                        <i class="fa fa-pencil"></i>
+                        注册</a>
+                    </li>
+                </ul>
+                <ul style="display: none;" id="loginUl">
+                    <li>
+                        <a href="/admin">
+                            <i class="fa fa-dashboard"></i> 后台
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="btn-logout">
+                            <i class="fa fa-user"></i>
+                            退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Bar -->
+    <div class="header_menu affix-top">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo.png" class="logo-white">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" class="logo-black">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="responsive-menu">
+                        <li class="dropdown submenu">
+                            <a href="/" class="dropdown-toggle">首页</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=1">单间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=2">大床房</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=3">双人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=4">三人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=5">套房</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            <div id="slicknav-mobile"></div>
+        </nav>
+    </div>
+    <!-- Navigation Bar Ends -->
+</header>
+<!-- header Ends -->
+
+
+<!-- breadcrumbs starts -->
+<section class="breadcrumb-outer">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2 th:text="${post.getPostTitle()}"></h2>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">首页</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">客房详情</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- breadcrumbs Ends -->
+
+<!-- details starts -->
+<section class="details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="detail-slider">
+                    <div class="slider-1 slider-for">
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider1.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider2.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider3.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider4.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider5.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider6.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider7.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider8.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider9.jpg" alt="image">
+                        </div>
+                    </div>
+                    <div class="slider-1 slider-nav">
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider1.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider2.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider3.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider4.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider5.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider6.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider7.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider8.jpg" alt="image">
+                        </div>
+                        <div class="detail-slider-item">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/detail-slider/slider9.jpg" alt="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-content">
+                    <div class="detail-title">
+                        <div class="title-left">
+                            <h3 th:text="${post.getPostTitle()}"></h3>
+                        </div>
+                    </div>
+                    <div id="exTab1">
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1a">
+                                <div class="detail-overview detail-box">
+                                    <div th:utext="${post.getPostContent()}">这里是客房描述</div>
+                                    <div  class="price-table" style="margin-top: 30px;">
+                                        <h4 >实时环境数据</h4>
+                                        <p ></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="main" style="width: 600px;height:400px;"></div>
+                <div id="history" style="width: 600px;height:400px;"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="detail-sidebar">
+                    <div class="sidebar-form reservation-form">
+                        <div class="form-price">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/bed-orange.png" alt="image">
+                            <div class="title-price">
+                                <h2 th:utext="${post.getPrice()}+'<span>/天</span>'"></h2>
+                            </div>
+                        </div>
+
+                        <div class="banner-form form-style-2">
+
+                            <div class="form-content">
+                                <div class="form-content-inner">
+                                    <form action="/checkout">
+                                        <input type="hidden" id="postId" name="postId" th:value="${post.getId()}">
+                                        <div class="table-item">
+                                            <label>入住日期</label>
+                                            <div class="form-group">
+                                                <div class="date-range-inner-wrapper">
+                                                    <input id="startDate" name="startDate" class="form-control"
+                                                           th:value="${startDate}">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-item">
+                                            <label>天数</label>
+                                            <div class="form-group form-icon">
+                                                <select name="quantity" id="quantity">
+                                                    <option value="1" selected="selected">1天</option>
+                                                    <option value="2">2天</option>
+                                                    <option value="3">3天</option>
+                                                    <option value="4">4天</option>
+                                                    <option value="5">5天</option>
+                                                    <option value="6">6天</option>
+                                                    <option value="7">7天</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="table-item">
+                                            <div class="form-btn">
+                                                <a class="btn btn-orange" id="btn-checkout">快速预定</a>
+                                                <input type="submit" style="display: none" id="submit-checkout">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-support">
+                        <h3>客服电话</h3>
+                        <p>24小时客服电话，快速咨询和预定</p>
+                        <p><i class="fa fa-phone"></i>977-222-333-444</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="form-btn">-->
+<!--        <a class="btn btn-orange" id="btn-che" th:href="/hist">历史环境数据</a>-->
+<!--        <input type="submit" style="display: none" id="submit-checkou">-->
+<!--    </div>-->
+</section>
+<!-- details Ends -->
+<!--<div class="table-item">-->
+
+<!--</div>-->
+
+<!-- Footer Starts -->
+<footer>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-content">
+                        <p>Copyright 2020. Made with <span>♥</span>. All Rights Reserved. <a
+                                href="#">Hotux</a></p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="tripadvisor-logo text-center">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/tripadvisor.png" alt="image">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-links mar-bottom-20">
+                        <ul>
+                            <li><a href="#">Accomodations</a></li>
+                            <li><a href="#">Book Now</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="playstore-links">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/appstore.png" alt="image" class="mar-right-10">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/googleplay.png" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Ends -->
+
+<!-- Back to top start -->
+<div id="back-to-top">
+    <a href="#"></a>
+</div>
+<!-- Back to top ends -->
+
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>快速登录</h3>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="手机号码或身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="userPass" placeholder="密码">
+                </div>
+                <div class="form-group form-checkbox">
+                    <input type="checkbox" id="rememberMe" checked> 记住我
+                    <!--                    <a href="#">Forgot password?</a>-->
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-login" class="btn btn-orange">登录</a>
+                <p>还没有账号?<a href="#" data-toggle="modal" data-target="#register">创建账号</a></p>
+                <p>忘记了密码?<a href="#" data-toggle="modal" data-target="#forget">重置密码</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>创建账号</h3>
+            <form>
+                <div class="form-group">
+                    <input type="number" id="regUserName" placeholder="手机号码">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="userDisplayName" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="idCard" placeholder="身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regUserPass" placeholder="密码">
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-register" class="btn btn-orange">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="forget" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>重置密码</h3>
+            <form>
+            <div class="form-group">
+                <input type="number" id="forgetUserName" placeholder="手机号码">
+            </div>
+            <div class="form-group">
+                <input type="text" id="forgetIdCard" placeholder="身份证号码">
+            </div>
+            <div class="form-group">
+                <input type="password" id="forgetUserPass" placeholder="新密码">
+            </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-forget" class="btn btn-orange">重置密码</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- *Scripts* -->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    myChart.setOption({
+        title: {
+            text: '环境指标'
+        },
+        tooltip: {},
+        legend: {
+            data:['环境指标']
+        },
+        xAxis: {
+            data: ['温度', '湿度', 'PM2.5', '噪声']
+        },
+        yAxis: {},
+        series: [{
+            name: '',
+            type: 'bar',
+            data: ['环境指标']
+        }]
+    });
+
+    myChart.showLoading();
+
+    var names=[];    //类别数组（实际用来盛放X轴坐标值）
+    var nums=[];    //销量数组（实际用来盛放Y坐标值）
+
+    // setInterval(function () {
+    //
+    // },5000)
+    $.ajax({
+        type : "get",
+        async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "/list",    //请求发送到TestServlet处
+        data : {},
+        dataType : "json",        //返回数据形式为json
+        success : function(result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            var data = result.data;
+            if (data) {
+                nums.push(data.temperature);
+                nums.push(data.humidity);
+                nums.push(data.pm25);
+                nums.push(data.noise); //挨个取出销量并填入销量数组
+
+                myChart.hideLoading();    //隐藏加载动画
+                myChart.setOption({        //加载数据图表
+
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: '环境指标',
+                        data: nums
+                    }]
+                });
+
+            }
+
+        },
+        error : function() {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    })
+
+</script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('history'));
+
+
+
+    myChart.showLoading();
+
+    var names=[];    //类别数组（实际用来盛放X轴坐标值）
+    var temperatures=[];    //销量数组（实际用来盛放Y坐标值）
+    var humiditys=[]
+    var pm25s=[]
+    var noises=[]
+
+    $.ajax({
+        type : "get",
+        async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "/history",    //请求发送到TestServlet处
+        data : {},
+        dataType : "json",        //返回数据形式为json
+        success : function(result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            var data = result.data;
+            if (data) {
+                var n = data.length-3;
+                console.log("从第"+n+"开始循环")
+                console.log("数组的长度为"+data.length)
+                for(var i=n;i<data.length;i++){
+                    console.log(data[i].dateCalculated)
+                    names.push(data[i].dateCalculated);    //挨个取出类别并填入类别数组
+                }
+                for(var i=n;i<data.length;i++){
+                    temperatures.push(data[i].temperature);    //挨个取出温度并填入销量数组
+                }
+                for(var i=n;i<data.length;i++){
+
+                    humiditys.push(data[i].humidity);    //挨个取出湿度并填入销量数组
+                }
+                for(var i=n;i<data.length;i++){
+                    noises.push(data[i].noise);    //挨个取出噪声并填入销量数组
+                }
+                for(var i=n;i<data.length;i++){
+                    pm25s.push(data[i].pm25);    //挨个取出pm2.5并填入销量数组
+                }
+
+                var option =  {
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            crossStyle: {
+                                color: '#999'
+                            }
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    legend: {
+                        data: ['相对湿度', '噪声', '温度','pm2.5']
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: names,
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '相对湿度',
+                            min: 0,
+                            max: 80,
+                            interval: 10,
+                            axisLabel: {
+                                formatter: '{value} %'
+                            }
+                        },
+                        {
+                            type: 'value',
+                            name: '温度',
+                            min: 0,
+                            max: 30,
+                            interval: 2,
+                            axisLabel: {
+                                formatter: '{value} °C'
+                            }
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '相对湿度',
+                            type: 'bar',
+                            data: humiditys
+
+                        },
+                        {
+                            name: '噪声',
+                            type: 'bar',
+                            data: noises
+                        },
+                        {
+                            name: 'PM2.5',
+                            type: 'bar',
+                            data: pm25s
+                        },
+                        {
+                            name: '温度',
+                            type: 'line',
+                            yAxisIndex: 1,
+                            data: temperatures
+                        }
+                    ]
+                }
+                myChart.hideLoading();    //隐藏加载动画
+                myChart.setOption(option);
+
+            }
+        },
+        error : function() {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    })
+
+
+
+</script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/jquery-3.3.1.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/bootstrap.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/plugin.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/main.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/login.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-nav.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-swiper1.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-singledate.js"></script>
+</body>
+</html>
+

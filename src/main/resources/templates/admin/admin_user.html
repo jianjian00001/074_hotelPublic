@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Hotux后台</title>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/style.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/loader.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/jquery/jquery.min.js"></script>
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrapStyle/bootstrapStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_style.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<header class="main-header">
+    <a href="/admin" class="logo">
+        <span class="logo-mini"><b>R</b>A</span>
+        <span class="logo-lg">Hotux</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/" title="前往前台"
+                       target="_blank"><i class="fa fa-location-arrow"></i></a></li>
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="user-image loginUserAvatar" alt="User
+                                Image">
+                        <span class="hidden-xs loginUserDisplayName"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar" alt="User
+                                    Image">
+                            <p class="loginUserDisplayName"></p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left"><a data-pjax="true" href="/admin/user/profile"
+                                                      class="btn btn-default "><i
+                                    class="fa fa-user"></i>个人资料</a></div>
+                            <div class="pull-right"><a href="/logout" class="btn btn-default "><i
+                                    class="fa fa-sign-out"></i>登出</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<div class="wrapper">
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar"
+                         style="width: 45px;height: 45px;" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p class="loginUserDisplayName"></p>
+                    <a href="/admin/user/profile"><i
+                            class="fa fa-circle text-success"></i>个人资料</a>
+                </div>
+            </div>
+          <!--  <form action="/search" method="get" target="_blank" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                  <button type="submit" name="keyword" id="search-btn" target="_blank"  class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                </div>
+            </form>-->
+
+            <ul class="sidebar-menu" data-widget="tree"></ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <style type="text/css" rel="stylesheet">
+            .role-ul > li {
+                list-style: none;
+                float: left;
+                margin: 0;
+                padding-bottom: 10px
+            }
+        </style>
+        <section class="content-header">
+            <h1 style="display: inline-block;">用户管理</h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a data-pjax="true" href="/admin">
+                        <i class="fa fa-dashboard"></i> 首页</a>
+                </li>
+                <li><a data-pjax="true" href="#">用户管理</a></li>
+                <li class="active">用户列表</li>
+            </ol>
+        </section>
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-md-4 col-xs-12" style="margin-bottom: 10px;padding-left: 0;">
+                        <a class="btn btn-primary" href="/new/user_new">
+                            <i class="fa fa-plus"></i> 新增
+                        </a>
+                        <button type="button" class="btn btn-danger" onclick="batchDelete()">
+                            <i class="fa fa-remove"></i> 批量删除
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-xs-12"
+                         style="margin-bottom: 10px; text-align:right;padding-left: 0; padding-right: 0;">
+                        <!--<form class="form-inline" action="/admin/user">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="keywords" name="keywords"
+                                       value="" placeholder="请输入关键字">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="searchType">
+                                    <option value="content" disabled>搜索范围</option>
+                                    <option value="userName">手机号</option>
+                                    <option value="userDisplayName">姓名</option>
+                                    <option value="email">身份证号码</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="status">
+                                    <option value="-1" disabled>状态</option>
+                                    <option value="0" selected="selected">正常</option>
+                                    <option value="1">禁止登录</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="sort">
+                                    <option value="createTime" disabled>排序字段</option>
+                                    <option value="createTime" selected="selected">创建时间</option>
+                                    <option value="loginLast">最后登录时间</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="order">
+                                    <option value="desc" disabled>升序/降序</option>
+                                    <option value="asc">升序</option>
+                                    <option value="desc" selected="selected">倒序</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                        </form>-->
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="allSelect" onclick="doCheck()"></th>
+                                    <th>手机号</th>
+                                    <th>姓名</th>
+                                    <th>身份证号码</th>
+                                    <th>状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                    <th>ID</th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="user:${users}">
+                                <tr th:id="'user-'+${user.getId()}">
+                                    <td><input type="checkbox" name="ids" th:value="${user.getId()}"></td>
+                                    <td th:text="${user.getUserName()}">
+                                        12312311111
+                                    </td>
+                                    <td th:text="${user.getUserDisplayName()}">马云</td>
+                                    <td th:text="${user.getIdCard()}">111111111111111199</td>
+                                    <td>
+                                        <span th:if="${user.getStatus() eq 0}" class="text-success">正常</span>
+                                        <span th:if="${user.getStatus() eq 1}" class="text-danger">禁用</span>
+                                        <span th:if="${user.getStatus() eq 2}" class="text-success">已删除</span>
+                                    </td>
+                                    <td th:text="${#dates.format(user.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">2020-04-08 00:44</td>
+                                    <td>
+                                        <a th:href="'/admin/user/edit?id='+${user.getId()}"
+                                           class="btn btn-info btn-xs ">编辑</a>
+                                        <a href="javascript:void(0)" th:onclick="'removeIt('+${user.getId()}+')'"
+                                           class="btn btn-danger btn-xs ">删除</a>
+                                    </td>
+                                    <td th:text="${user.getId()}">20</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box-footer clearfix">
+                            <div th:text="'第'+${pageInfo.getCurrent()}+'/'+${pageInfo.getPages()}+'页'" class="no-margin pull-left">
+                                第 1 / 2 页
+                            </div>
+                            <ul class="pagination no-margin pull-right">
+                                <li><a data-pjax="true"  class="btn btn-sm"
+                                       href="?role=customer&amp;searchType=&amp;keywords=&amp;status=0&amp;sort=createTime&amp;order=desc">
+                                    首页
+                                </a>
+                                </li>
+                                <li >
+                                    <a data-pjax="true" th:class="${pageInfo.getCurrent() gt 1?'btn btn-sm':'btn btn-sm disabled'}"
+                                       th:href="'?role=customer&amp;page='+${pageInfo.getCurrent()-1}+'&amp;searchType=&amp;keywords=&amp;status=0&amp;sort=createTime&amp;order=desc'">
+                                    上一页
+                                </a>
+                                </li>
+                                <li >
+                                    <a data-pjax="true" th:class="${pageInfo.getCurrent() lt pageInfo.getPages()?'btn btn-sm':'btn btn-sm disabled'}"
+                                       th:href="'?role=customer&amp;page='+${pageInfo.getCurrent()+1}+'&amp;searchType=&amp;keywords=&amp;status=0&amp;sort=createTime&amp;order=desc'">
+                                    下一页
+                                </a>
+                                </li>
+                                <li >
+                                    <a data-pjax="true" class="btn btn-sm"
+                                       th:href="'?role=customer&amp;page='+${pageInfo.getPages()}+'&amp;searchType=&amp;keywords=&amp;status=0&amp;sort=createTime&amp;order=desc'">
+                                    尾页
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+
+            function removeIt(id) {
+                layer.confirm("你确定是否删除？", function (index) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/user/delete',
+                        async: false,
+                        data: {
+                            'id': id
+                        },
+                        success: function (data) {
+                            if (data.code == 0) {
+                                showMsg(data.msg, "error", 1000);
+                            } else {
+                                showMsg(data.msg, "success", 2000);
+                                $('#user-' + id).remove();
+                            }
+
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+
+            function batchDelete() {
+                var arr = [];
+                $('input[name="ids"]:checked').each(function () {
+                    arr.push($(this).val());
+                });
+                if (arr.length <= 0) {
+                    showMsg('请选择要删除的记录', "error", 1000);
+                } else {
+                    layer.confirm('你确定是否删除?', function (index) {
+                        $.ajax({
+                            url: "/admin/user/batchDelete?ids=" + arr,
+                            type: "DELETE",
+                            success: function (data) {
+                                if (data.code == 0) {
+                                    showMsg(data.msg, "error", 1000);
+                                } else {
+                                    showMsgAndReload(data.msg, "success", 2000);
+                                }
+                            }
+                        });
+                        layer.close(index);
+                    });
+                }
+            }
+
+        </script>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"><a href="#">2020</a></div>
+    Thanks for using <strong><a data-pjax="true" href="#">Hotux</a>.</strong>
+</footer>
+
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pjax/jquery.pjax.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/adminlte.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/layer/layer.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/languages/zh_cn.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/plugins/image_manager.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/app.js"></script>
+<script>
+    Pace.options = {
+        restartOnRequestAfter: false
+    };
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).pjax('a[data-pjax=true]', '.content-wrapper', {
+        fragment: '.content-wrapper',
+        timeout: 8000
+    });
+    var heading = "提示";
+</script>
+</body>
+</html>
+
+

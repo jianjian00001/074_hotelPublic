@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<!doctype html>
+<html lang="zh_CN" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Hotux</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://oss.liuyanzhao.com/static/hotel/static/front/images/favicon.png">
+    <!-- Bootstrap core CSS -->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--Default CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/default.css" rel="stylesheet" type="text/css">
+    <!--Custom CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/style.css" rel="stylesheet" type="text/css">
+    <!--Plugin CSS-->
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/front/css/plugin.css" rel="stylesheet" type="text/css">
+    <link href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">-->
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+<!-- Preloader -->
+<!--        <div id="preloader">-->
+<!--            <div id="status"></div>-->
+<!--        </div>-->
+<!-- Preloader Ends -->
+
+<!-- header start -->
+<header class="main_header_area">
+    <div class="header-content">
+        <div class="container">
+            <div class="links links-left">
+                <ul>
+                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> info@abcd.com</a></li>
+                    <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> 977-222-333-444</a></li>
+                </ul>
+            </div>
+            <div class="links links-right pull-right">
+                <ul style="display: none;" id="notLoginUl">
+                    <li>
+                        <a href="#" data-toggle="modal" id="btn-login-model" data-target="#login">
+                            <i class="fa fa-user"></i>
+                            登录
+                        </a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#register">
+                        <i class="fa fa-pencil"></i>
+                        注册</a>
+                    </li>
+                </ul>
+                <ul style="display: none;" id="loginUl">
+                    <li>
+                        <a href="/admin">
+                            <i class="fa fa-dashboard"></i> 后台
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="btn-logout">
+                            <i class="fa fa-user"></i>
+                            退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Bar -->
+    <div class="header_menu affix-top">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo.png" class="logo-white">
+                        <img alt="Image" src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" class="logo-black">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="responsive-menu">
+                        <li class="dropdown submenu">
+                            <a href="/" class="dropdown-toggle">首页</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=1">单间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=2">大床房</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=3">双人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=4">三人间</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/?cateId=5">套房</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            <div id="slicknav-mobile"></div>
+        </nav>
+    </div>
+    <!-- Navigation Bar Ends -->
+</header>
+<!-- header Ends -->
+
+
+<!-- breadcrumbs starts -->
+<section class="breadcrumb-outer">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2 th:text="${order.getPostTitle()}">海天大床房</h2>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">首页</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">预定客房</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- breadcrumbs Ends -->
+<section id="checkout-main" class="checkout-main section-padding">
+    <div class="container">
+        <div class="checkout-inner">
+
+            <div class="checkout-info">
+                <h4 class="mar-bottom-20">联系方式</h4>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="checkout-billing">
+                            <form method="" target="" id="orderForm">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>姓名: <abbr class="required" title="required">*</abbr></label>
+                                            <input type="text" id="userDisplayName" name="userDisplayName"
+                                                   class="form-control"
+                                                   th:value="${order.getName()}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>身份证号码:</label>
+                                            <input type="text" id="idCard" name="idCard" class="form-control"
+                                                   th:value="${order.getIdCard()}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>手机号: <abbr class="required" title="required">*</abbr></label>
+                                            <input type="number" id="userName" name="userName" class="form-control"
+                                                   th:value="${order.getPhone()}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>操作人: <abbr class="required" title="required">*</abbr></label>
+                                            <input type="text" class="form-control"
+                                                   th:value="${user.getUserDisplayName()}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-order mar-top-15">
+                <h4 class="mar-bottom-20">结算</h4>
+                <div class="order-list">
+                    <table class="shop_table rt-checkout-review-order-table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                客房信息
+                            </td>
+                            <td>
+                                <a th:text="${order.getPostTitle()}" th:href="'/post/'+${order.getPostId()}">海天大床房</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                房间号
+                            </td>
+                            <td th:text="${order.getPostNumber()}">
+                                S205
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                入住日期
+                            </td>
+                            <td th:text="${order.getStartDate()}">
+                                2020-12-22
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                单价
+                            </td>
+                            <td>
+                                <strong>
+                                        <span th:text="'¥'+${order.getPrice()}" class="rt-Price-amount">
+                                            ¥200
+                                        </span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                天数
+                            </td>
+                            <td th:text="${order.getQuantity()}">
+                                1
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="order-total">
+                            <th>总价</th>
+                            <td>
+                                <strong>
+                                        <span th:text="'¥'+${order.getTotalPrice()}" class="rt-Price-amount">
+                                            ¥200
+                                        </span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <th>状态</th>
+                            <td >
+                                <strong >
+
+                                    <span   class="text-info" th:if="${order.getStatus() eq 1}">已支付</span>
+                                    <span   class="text-info" th:if="${order.getStatus() eq 0}">待支付</span>
+                                    <span   class="text-info" th:if="${order.getStatus() eq 2}">已完结</span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <th>订单创建时间</th>
+                            <td th:text="${dateString}">2020-12-22 11:35:44</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Starts -->
+<footer>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-content">
+                        <p>Copyright 2020. Made with <span>♥</span>. All Rights Reserved. <a
+                                href="#">Hotux</a></p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="tripadvisor-logo text-center">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/tripadvisor.png" alt="image">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="copyright-links mar-bottom-20">
+                        <ul>
+                            <li><a href="#">Accomodations</a></li>
+                            <li><a href="#">Book Now</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="playstore-links">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/appstore.png" alt="image" class="mar-right-10">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/icons/googleplay.png" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Ends -->
+
+<!-- Back to top start -->
+<div id="back-to-top">
+    <a href="#"></a>
+</div>
+<!-- Back to top ends -->
+
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>快速登录</h3>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="手机号码或身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="userPass" placeholder="密码">
+                </div>
+                <div class="form-group form-checkbox">
+                    <input type="checkbox" id="rememberMe" checked> 记住我
+                    <!--                    <a href="#">Forgot password?</a>-->
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-login" class="btn btn-orange">登录</a>
+                <p>还没有账号?<a href="#" data-toggle="modal" data-target="#register">创建账号</a></p>
+                <p>忘记了密码?<a href="#" data-toggle="modal" data-target="#forget">重置密码</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>创建账号</h3>
+            <form>
+                <div class="form-group">
+                    <input type="number" id="regUserName" placeholder="手机号码">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="userDisplayName" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="idCard" placeholder="身份证号码">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regUserPass" placeholder="密码">
+                </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-register" class="btn btn-orange">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="forget" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-content">
+            <div class="login-image">
+                <img src="https://oss.liuyanzhao.com/static/hotel/static/front/images/logo-black.png" alt="image">
+            </div>
+            <h3>重置密码</h3>
+            <form、>
+            <div class="form-group">
+                <input type="number" id="forgetUserName" placeholder="手机号码">
+            </div>
+            <div class="form-group">
+                <input type="text" id="forgetIdCard" placeholder="身份证号码">
+            </div>
+            <div class="form-group">
+                <input type="password" id="forgetUserPass" placeholder="新密码">
+            </div>
+            </form>
+            <div class="form-btn">
+                <a href="#" id="btn-forget" class="btn btn-orange">重置密码</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- *Scripts* -->
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/jquery-3.3.1.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/bootstrap.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/plugin.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/main.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/login.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-nav.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-swiper1.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/front/js/custom-singledate.js"></script>
+</body>
+</html>
+

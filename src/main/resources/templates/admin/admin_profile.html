@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Hotux后台</title>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/style.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/css/loader.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/css/jquery.toast.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/jquery/jquery.min.js"></script>
+    <script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/bootstrapStyle/bootstrapStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/css/froala_style.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body class="hold-transition sidebar-mini fixed skin-blue">
+<header class="main-header">
+    <a href="/admin" class="logo">
+        <span class="logo-mini"><b>R</b>A</span>
+        <span class="logo-lg">Hotux</span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li><a href="/" title="前往前台"
+                       target="_blank"><i class="fa fa-location-arrow"></i></a></li>
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="user-image loginUserAvatar" alt="User
+                                Image">
+                        <span class="hidden-xs loginUserDisplayName"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="user-header">
+                            <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar" alt="User
+                                    Image">
+                            <p class="loginUserDisplayName"></p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left"><a data-pjax="true" href="/admin/user/profile"
+                                                      class="btn btn-default "><i
+                                    class="fa fa-user"></i>个人资料</a></div>
+                            <div class="pull-right"><a href="/logout" class="btn btn-default "><i
+                                    class="fa fa-sign-out"></i>登出</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="wrapper">
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="https://oss.liuyanzhao.com/static/hotel/static/images/default.png" class="img-circle loginUserAvatar"
+                         style="width: 45px;height: 45px;" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p class="loginUserDisplayName"></p>
+                    <a href="/admin/user/profile"><i
+                            class="fa fa-circle text-success"></i>个人资料</a>
+                </div>
+            </div>
+            <form action="/search" method="get" target="_blank" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                  <button type="submit" name="keyword" id="search-btn" target="_blank"  class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                </div>
+            </form>
+
+            <ul class="sidebar-menu" data-widget="tree"></ul>
+        </section>
+    </aside>
+
+
+    <div class="content-wrapper">
+        <style>
+            .form-horizontal .control-label {
+                text-align: left;
+            }
+        </style>
+        <section class="content-header">
+            <h1>
+                个人信息
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a data-pjax="true" href="/admin">
+                        <i class="fa fa-dashboard"></i> 首页</a>
+                </li>
+                <li><a data-pjax="true" href="#">用户管理</a></li>
+                <li class="active">个人信息</li>
+            </ol>
+        </section>
+        <!-- tab选项卡 -->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#general"
+                                   data-toggle="tab">基本信息</a>
+                            </li>
+                            <li>
+                                <a href="#pass"
+                                   data-toggle="tab">修改密码</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="general">
+                                <form method="post" class="form-horizontal" id="profileForm">
+                                    <input type="hidden" id="userPass" name="userPass"
+                                           value="a021a665f503979c06f50b8de66a4218">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="userName"
+                                                   class="col-lg-2 col-sm-4 control-label">手机号
+                                                <span data-toggle="tooltip" data-placement="top"
+                                                      title="用户登录的账号"
+                                                      style="cursor: pointer">
+                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                </span>
+                                            </label>
+                                            <div class="col-lg-4 col-sm-8">
+                                                <input type="text" class="form-control" id="userName" name="userName"
+                                                       th:value="${user.getUserName()}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="userDisplayName"
+                                                   class="col-lg-2 col-sm-4 control-label">显示名
+                                                <span data-toggle="tooltip" data-placement="top"
+                                                      title="用于显示的名称"
+                                                      style="cursor: pointer">
+                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                </span>
+                                            </label>
+                                            <div class="col-lg-4 col-sm-8">
+                                                <input type="text" class="form-control" id="userDisplayName"
+                                                       name="userDisplayName"
+                                                       th:value="${user.getUserDisplayName()}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idCard"
+                                                   class="col-lg-2 col-sm-4 control-label">身份证号码</label>
+                                            <div class="col-lg-4 col-sm-8">
+                                                <input type="email" class="form-control" id="idCard"
+                                                       name="idCard"
+                                                       th:value="${user.getIdCard()}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="userDesc"
+                                                   class="col-lg-2 col-sm-4 control-label">个人描述
+                                            </label>
+                                            <div class="col-lg-4 col-sm-8">
+                                                <textarea class="form-control" rows="3" id="userDesc" name="userDesc"
+                                                          th:text="${user.getUserDesc()}"  style="resize: none"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <button type="button" class="btn btn-primary btn-sm "
+                                                onclick="saveUser('profileForm')">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="pass">
+                                <form method="post" class="form-horizontal" id="passForm">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="beforePass"
+                                                   class="col-sm-2 control-label">旧密码</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control" id="beforePass"
+                                                       name="beforePass">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPass"
+                                                   class="col-sm-2 control-label">新密码</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control" id="newPass"
+                                                       name="newPass">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reNewPass"
+                                                   class="col-sm-2 control-label">确认密码</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control" id="reNewPass"
+                                                       name="reNewPass">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <button type="button" class="btn btn-primary btn-sm "
+                                                onclick="changPass()">修改</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+
+
+            function saveUser(option) {
+                var param = $('#' + option).serialize();
+                $.ajax({
+                    type: 'post',
+                    url: '/admin/user/profile/save',
+                    data: param,
+                    success: function (data) {
+                        if (data.code == 1) {
+                            $.toast({
+                                text: data.msg,
+                                heading: '提示',
+                                icon: 'success',
+                                showHideTransition: 'fade',
+                                allowToastClose: true,
+                                hideAfter: 1000,
+                                stack: 1,
+                                position: 'top-center',
+                                textAlign: 'left',
+                                loader: true,
+                                loaderBg: '#ffffff',
+                                afterHidden: function () {
+                                    window.location.href = "/logout";
+                                }
+                            });
+                        } else {
+                            showMsg(data.msg, "error", 1000);
+                        }
+                    }
+                });
+            }
+
+            function changPass() {
+                var beforePass = $('#beforePass').val();
+                var newPass = $('#newPass').val();
+                var reNewPass = $('#reNewPass').val();
+                if (beforePass == "" || newPass == "" || reNewPass == "") {
+                    showMsg("请输入完整信息", "info", 2000);
+                    return;
+                }
+                if (newPass != reNewPass) {
+                    showMsg("两次密码不一致", "error", 1000);
+                    return;
+                }
+                var param = $('#passForm').serialize();
+                $.ajax({
+                    type: 'post',
+                    url: '/admin/user/changePass',
+                    data: param,
+                    success: function (data) {
+                        if (data.code == 1) {
+                            $.toast({
+                                text: data.msg,
+                                heading: '提示',
+                                icon: 'success',
+                                showHideTransition: 'fade',
+                                allowToastClose: true,
+                                hideAfter: 1000,
+                                stack: 1,
+                                position: 'top-center',
+                                textAlign: 'left',
+                                loader: true,
+                                loaderBg: '#ffffff',
+                                afterHidden: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            showMsg(data.msg, "error", 1000);
+                        }
+                    }
+                });
+            }
+
+            function removeIt(id) {
+                layer.confirm('你确定是否删除', function (index) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/admin/user/deleteBind',
+                        async: false,
+                        data: {
+                            'id': id
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.code == 0) {
+                                showMsg(data.msg, "error", 1000);
+                            } else {
+                                $('#bind-' + id).remove();
+                                showMsg(data.msg, "success", 2000);
+                            }
+
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        </script>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs"><a href="#">2020</a></div>
+    Thanks for using <strong><a data-pjax="true" href="#">Hotux</a>.</strong>
+</footer>
+
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pjax/jquery.pjax.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/pace/pace.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/adminlte.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/toast/js/jquery.toast.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/layer/layer.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/languages/zh_cn.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/plugins/froala-editor/js/plugins/image_manager.min.js"></script>
+<script src="https://oss.liuyanzhao.com/static/hotel/static/js/app.js"></script>
+<script>
+    Pace.options = {
+        restartOnRequestAfter: false
+    };
+    $(document).ajaxStart(function () {
+        Pace.restart();
+    });
+    $(document).pjax('a[data-pjax=true]', '.content-wrapper', {
+        fragment: '.content-wrapper',
+        timeout: 8000
+    });
+    var heading = "提示";
+</script>
+</body>
+</html>
+
+
